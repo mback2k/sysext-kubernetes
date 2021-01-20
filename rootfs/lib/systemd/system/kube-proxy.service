@@ -1,0 +1,16 @@
+[Unit]
+Requires=torcx.target
+After=torcx.target
+Description=Kubernetes Kube-Proxy Server
+After=network.target
+Requires=network.target
+
+[Service]
+EnvironmentFile=/run/metadata/torcx
+ExecStart=/usr/bin/env ${TORCX_BINDIR}/kube-proxy --config=/etc/kubernetes/kube-proxy.yaml
+Restart=always
+RestartSec=5
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

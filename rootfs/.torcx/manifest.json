@@ -1,0 +1,14 @@
+{
+    "kind": "image-manifest-v0",
+    "value": {
+        "bin": [
+            "/bin/kube-proxy",
+            "/bin/kubelet",
+            "/bin/kubectl"
+        ],
+        "units": [
+            "/lib/systemd/system/kube-proxy.service",
+            "/lib/systemd/system/kubelet.service"
+        ]
+    }
+}
