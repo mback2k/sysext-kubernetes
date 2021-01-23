@@ -4,6 +4,7 @@ After=torcx.target
 Description=Kubernetes Kube-Proxy Server
 After=network.target
 Requires=network.target
+RequiresMountsFor=/opt/cni
 
 [Service]
 EnvironmentFile=/run/metadata/torcx

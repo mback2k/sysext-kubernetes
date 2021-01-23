@@ -4,6 +4,7 @@ After=torcx.target
 Description=Kubernetes Kubelet Server
 After=containerd.service
 Requires=containerd.service
+RequiresMountsFor=/opt/cni
 
 [Service]
 EnvironmentFile=/run/metadata/torcx
