@@ -8,7 +8,9 @@ RequiresMountsFor=/opt/cni
 
 [Service]
 EnvironmentFile=/run/metadata/torcx
-ExecStart=/usr/bin/env ${TORCX_BINDIR}/kube-proxy --config=/etc/kubernetes/kube-proxy.yaml
+EnvironmentFile=-/etc/default/kubernetes
+ExecStart=/usr/bin/env ${TORCX_BINDIR}/kube-proxy --config=/etc/kubernetes/kube-proxy.yaml \
+  $KUBE_PROXY_OPTIONS
 Restart=always
 RestartSec=5
 LimitNOFILE=65536

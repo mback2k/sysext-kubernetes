@@ -8,10 +8,12 @@ RequiresMountsFor=/opt/cni
 
 [Service]
 EnvironmentFile=/run/metadata/torcx
+EnvironmentFile=-/etc/default/kubernetes
 ExecStart=/usr/bin/env ${TORCX_BINDIR}/kubelet --config=/etc/kubernetes/kubelet.yaml \
   --container-runtime=remote \
   --container-runtime-endpoint=unix:///run/docker/libcontainerd/docker-containerd.sock \
-  --kubeconfig=/etc/kubernetes/kubelet.kubeconfig
+  --kubeconfig=/etc/kubernetes/kubelet.kubeconfig \
+  $KUBELET_OPTIONS
 Restart=always
 RestartSec=5
 KillMode=process
