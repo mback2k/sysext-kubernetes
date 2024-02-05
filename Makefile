@@ -1,4 +1,4 @@
-build: torcx.tgz torcx.squashfs
+build: sysext.raw
 
 
 cni.tar.gz:
@@ -23,13 +23,10 @@ helm: helm.tar.gz
 	tar -xzf helm.tar.gz
 
 
-torcx: cni kube-node helm
-	mkdir -p rootfs/bin
-	cp -ar kubernetes/node/bin/* rootfs/bin/
-	cp -a linux-amd64/helm rootfs/bin/
+sysext: cni kube-node helm
+	mkdir -p rootfs/usr/bin
+	cp -ar kubernetes/node/bin/* rootfs/usr/bin/
+	cp -a linux-amd64/helm rootfs/usr/bin/
 
-torcx.tgz: torcx
-	tar -C rootfs -czf torcx.tgz .
-
-torcx.squashfs: torcx
-	mksquashfs rootfs torcx.squashfs
+sysext.raw: sysext
+	mksquashfs rootfs sysext.raw -all-root
